@@ -1,0 +1,56 @@
+# Number Guessing Game
+# A simple game where the player guesses a random number
+
+vuga "=== Guessing Game ==="
+vuga ""
+vuga "Ndi gufunga umubare (1-100)"
+vuga "I'm thinking of a number (1-100)"
+vuga ""
+
+# For demo, we'll use a fixed number
+# In real version, this would use random()
+shyiramo secretNumber = 42
+shyiramo attempts = 0
+shyiramo maxAttempts = 7
+
+vuga "You have", maxAttempts, "attempts!"
+vuga ""
+
+igihe attempts < maxAttempts
+    shyiramo remaining = maxAttempts - attempts
+    vuga "Attempts remaining:", remaining
+    
+    # In real version, would use: shyiramo guess = injiza("Your guess: ")
+    # For demo, we'll simulate guesses
+    shyiramo guess = 50
+    
+    niba attempts == 1
+        guess = 25
+    niba attempts == 2
+        guess = 35
+    niba attempts == 3
+        guess = 42
+    
+    vuga "Your guess:", guess
+    
+    attempts = attempts + 1
+    
+    niba guess == secretNumber
+        vuga ""
+        vuga "🎉 Congratulations! You guessed it!"
+        vuga "It took you", attempts, "attempts!"
+        kubera
+    
+    niba guess < secretNumber
+        vuga "Too low! Try higher."
+    nanone
+        vuga "Too high! Try lower."
+    
+    vuga ""
+
+niba attempts >= maxAttempts
+    vuga ""
+    vuga "😔 Game Over! The number was:", secretNumber
+
+vuga ""
+vuga "Thanks for playing!"
