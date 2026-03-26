@@ -1,0 +1,111 @@
+# Sorting Algorithms
+# Various sorting implementations in KashaLang
+
+vuga "=== Sorting Algorithms ==="
+vuga ""
+
+# Bubble Sort
+fata bubbleSort(arr)
+    shyiramo n = uburebure(arr)
+    shyiramo result = []
+    subiramo item in arr
+        ongera(result, item)
+    
+    kugeza i from 0 to n
+        kugeza j from 0 to n - i - 1
+            niba result[j] > result[j + 1]
+                # Swap
+                shyiramo temp = result[j]
+                result[j] = result[j + 1]
+                result[j + 1] = temp
+    
+    subiza result
+
+# Selection Sort
+fata selectionSort(arr)
+    shyiramo n = uburebure(arr)
+    shyiramo result = []
+    subiramo item in arr
+        ongera(result, item)
+    
+    kugeza i from 0 to n
+        shyiramo minIdx = i
+        kugeza j from i + 1 to n
+            niba result[j] < result[minIdx]
+                minIdx = j
+        
+        # Swap
+        shyiramo temp = result[i]
+        result[i] = result[minIdx]
+        result[minIdx] = temp
+    
+    subiza result
+
+# Insertion Sort
+fata insertionSort(arr)
+    shyiramo result = [arr[0]]
+    kugeza i from 1 to uburebure(arr)
+        shyiramo key = arr[i]
+        shyiramo j = uburebure(result) - 1
+        
+        igihe j >= 0 kandi result[j] > key
+            niba j + 1 < uburebure(result)
+                result[j + 1] = result[j]
+            nanone
+                ongera(result, result[j])
+            j = j - 1
+        
+        niba j + 1 < uburebure(result)
+            result[j + 1] = key
+        nanone
+            ongera(result, key)
+    
+    subiza result
+
+# Quick Sort
+fata quickSort(arr)
+    niba uburebure(arr) <= 1
+        subiza arr
+    
+    shyiramo pivot = arr[uburebure(arr) / 2]
+    shyiramo left = []
+    shyiramo middle = []
+    shyiramo right = []
+    
+    subiramo item in arr
+        niba item < pivot
+            ongera(left, item)
+        nanone niba item == pivot
+            ongera(middle, item)
+        nanone
+            ongera(right, item)
+    
+    subiza quickSort(left) + middle + quickSort(right)
+
+# Test data
+shyiramo testArray = [64, 34, 25, 12, 22, 11, 90, 5]
+
+vuga "Original array:", testArray
+vuga ""
+
+vuga "Bubble Sort:", bubbleSort(testArray)
+vuga "Selection Sort:", selectionSort(testArray)
+vuga "Insertion Sort:", insertionSort(testArray)
+vuga "Quick Sort:", quickSort(testArray)
+
+vuga ""
+
+# Performance comparison
+vuga "--- Performance Test ---"
+shyiramo largeArray = []
+kugeza i from 0 to 100
+    ongera(largeArray, 100 - i)
+
+vuga "Sorting 100 elements..."
+
+# Time the built-in sort
+urutonde(largeArray)
+vuga "Built-in sort: Done!"
+
+vuga ""
+vuga "All sorting algorithms completed!"

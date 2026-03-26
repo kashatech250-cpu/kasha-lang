@@ -1,0 +1,130 @@
+# Search Algorithms
+# Various search implementations in KashaLang
+
+vuga "=== Search Algorithms ==="
+vuga ""
+
+# Linear Search
+fata linearSearch(arr, target)
+    shyiramo i = 0
+    subiramo item in arr
+        niba item == target
+            subiza i
+        i = i + 1
+    subiza -1
+
+# Binary Search (requires sorted array)
+fata binarySearch(arr, target)
+    shyiramo left = 0
+    shyiramo right = uburebure(arr) - 1
+    
+    igihe left <= right
+        shyiramo mid = (left + right) / 2
+        
+        niba arr[mid] == target
+            subiza mid
+        niba arr[mid] < target
+            left = mid + 1
+        nanone
+            right = mid - 1
+    
+    subiza -1
+
+# Find all occurrences
+fata findAll(arr, target)
+    shyiramo indices = []
+    shyiramo i = 0
+    
+    subiramo item in arr
+        niba item == target
+            ongera(indices, i)
+        i = i + 1
+    
+    subiza indices
+
+# Find minimum
+fata findMin(arr)
+    niba uburebure(arr) == 0
+        subiza taruza
+    
+    shyiramo min = arr[0]
+    subiramo item in arr
+        niba item < min
+            min = item
+    
+    subiza min
+
+# Find maximum
+fata findMax(arr)
+    niba uburebure(arr) == 0
+        subiza taruza
+    
+    shyiramo max = arr[0]
+    subiramo item in arr
+        niba item > max
+            max = item
+    
+    subiza max
+
+# Find min and max
+fata findMinMax(arr)
+    niba uburebure(arr) == 0
+        subiza [taruza, taruza]
+    
+    shyiramo min = arr[0]
+    shyiramo max = arr[0]
+    
+    subiramo item in arr
+        niba item < min
+            min = item
+        niba item > max
+            max = item
+    
+    subiza [min, max]
+
+# Test data
+shyiramo numbers = [34, 12, 5, 89, 21, 67, 43, 90, 11, 3]
+shyiramo sortedNumbers = [3, 5, 11, 12, 21, 34, 43, 67, 89, 90]
+
+vuga "Array:", numbers
+vuga "Sorted array:", sortedNumbers
+vuga ""
+
+# Linear search tests
+vuga "--- Linear Search ---"
+shyiramo idx1 = linearSearch(numbers, 21)
+vuga "Find 21:", idx1
+
+shyiramo idx2 = linearSearch(numbers, 100)
+vuga "Find 100:", idx2
+
+vuga ""
+
+# Binary search tests
+vuga "--- Binary Search ---"
+shyiramo idx3 = binarySearch(sortedNumbers, 43)
+vuga "Find 43:", idx3
+
+shyiramo idx4 = binarySearch(sortedNumbers, 100)
+vuga "Find 100:", idx4
+
+vuga ""
+
+# Find all occurrences
+shyiramo withDuplicates = [1, 2, 3, 2, 4, 2, 5]
+vuga "Array with duplicates:", withDuplicates
+shyiramo all2s = findAll(withDuplicates, 2)
+vuga "All indices of 2:", all2s
+
+vuga ""
+
+# Min/Max tests
+vuga "--- Min/Max ---"
+vuga "Minimum:", findMin(numbers)
+vuga "Maximum:", findMax(numbers)
+
+shyiramo bounds = findMinMax(numbers)
+vuga "Min and Max:", bounds
+
+vuga ""
+vuga "Search algorithms completed!"

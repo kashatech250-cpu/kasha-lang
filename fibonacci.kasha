@@ -1,0 +1,76 @@
+# Fibonacci Sequence
+# Generate Fibonacci numbers
+
+vuga "=== Fibonacci Sequence ==="
+vuga ""
+
+# Iterative approach
+fata fibonacciIterative(n)
+    niba n <= 0
+        subiza []
+    niba n == 1
+        subiza [0]
+    
+    shyiramo sequence = [0, 1]
+    
+    igihe uburebure(sequence) < n
+        shyiramo next = sequence[uburebure(sequence) - 1] + sequence[uburebure(sequence) - 2]
+        ongera(sequence, next)
+    
+    subiza sequence
+
+# Recursive approach
+fata fibonacciRecursive(n)
+    niba n <= 1
+        subiza n
+    subiza fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2)
+
+# Generate sequence using recursive
+fata fibonacciSequenceRecursive(n)
+    shyiramo sequence = []
+    kugeza i from 0 to n
+        ongera(sequence, fibonacciRecursive(i))
+    subiza sequence
+
+vuga "Iterative (first 10):"
+shyiramo fib10 = fibonacciIterative(10)
+vuga fib10
+
+vuga ""
+vuga "Recursive (first 10):"
+shyiramo fib10r = fibonacciSequenceRecursive(10)
+vuga fib10r
+
+vuga ""
+
+# Find nth Fibonacci number
+fata nthFibonacci(n)
+    niba n <= 0
+        subiza 0
+    niba n == 1
+        subiza 1
+    
+    shyiramo a = 0
+    shyiramo b = 1
+    shyiramo i = 2
+    
+    igihe i <= n
+        shyiramo temp = a + b
+        a = b
+        b = temp
+        i = i + 1
+    
+    subiza b
+
+vuga "50th Fibonacci number:"
+vuga nthFibonacci(50)
+
+vuga ""
+
+# Golden ratio approximation
+vuga "Golden ratio approximations:"
+kugeza n from 10 to 21
+    shyiramo fibN = nthFibonacci(n)
+    shyiramo fibN1 = nthFibonacci(n + 1)
+    shyiramo ratio = fibN1 / fibN
+    vuga "F(" + n + "+1)/F(" + n + ") =", ratio
