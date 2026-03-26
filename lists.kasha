@@ -1,0 +1,75 @@
+# Lists in KashaLang
+# Demonstrates list operations
+
+vuga "=== Lists Demo ==="
+vuga ""
+
+# Creating lists
+shyiramo emptyList = []
+shyiramo numbers = [1, 2, 3, 4, 5]
+shyiramo mixed = [1, "hello", ukuri, 3.14]
+
+vuga "Empty list:", emptyList
+vuga "Numbers:", numbers
+vuga "Mixed:", mixed
+
+vuga ""
+
+# List operations
+vuga "--- List Operations ---"
+vuga "Length:", uburebure(numbers)
+vuga "First:", numbers[0]
+vuga "Last:", numbers[uburebure(numbers) - 1]
+
+vuga ""
+
+# Modify list
+ongera(numbers, 6)
+vuga "After append:", numbers
+
+shiramo(numbers, 0, 0)
+vuga "After insert at 0:", numbers
+
+kuramo(numbers, 3)
+vuga "After remove 3:", numbers
+
+vuga ""
+
+# List methods - use English names
+sort(numbers)
+vuga "After sort:", numbers
+
+reverse(numbers)
+vuga "After reverse:", numbers
+
+vuga ""
+
+# List slicing (using index access)
+shyiramo fruits = ["apple", "banana", "cherry", "date", "elderberry"]
+vuga "Fruits:", fruits
+vuga "First fruit:", fruits[0]
+vuga "Last fruit:", fruits[uburebure(fruits) - 1]
+
+vuga ""
+
+# Nested lists
+shyiramo row1 = [1, 2, 3]
+shyiramo row2 = [4, 5, 6]
+shyiramo row3 = [7, 8, 9]
+shyiramo matrix = [row1, row2, row3]
+
+vuga "Matrix:", matrix
+vuga "Element at [1][2]:", matrix[1][2]
+
+vuga ""
+
+# List comprehension simulation
+shyiramo squares = []
+kugeza i from 0 to 5 {
+    ongera(squares, i * i)
+}
+
+vuga "Squares:", squares
+
+vuga ""
+vuga "Lists demo complete!"

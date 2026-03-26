@@ -1,0 +1,77 @@
+# Loops in KashaLang
+# Demonstrates different loop types
+
+vuga "=== Loops Demo ==="
+vuga ""
+
+# While loop (igihe)
+vuga "--- While Loop ---"
+shyiramo i = 0
+
+igihe i < 5 {
+    vuga "Count:", i
+    i = i + 1
+}
+
+vuga ""
+
+# For loop with range (kugeza)
+vuga "--- Range Loop ---"
+kugeza j from 0 to 5 {
+    vuga "Range count:", j
+}
+
+vuga ""
+
+# Range loop with step
+vuga "--- Range Loop with Step ---"
+kugeza k from 0 to 10 step 2 {
+    vuga "Even number:", k
+}
+
+vuga ""
+
+# For-in loop (subiramo) with list
+vuga "--- For-In Loop ---"
+shyiramo fruits = ["apple", "banana", "cherry", "date"]
+
+subiramo fruit in fruits {
+    vuga "Fruit:", fruit
+}
+
+vuga ""
+
+# Loop with index
+vuga "--- Loop with Index ---"
+shyiramo colors = ["red", "green", "blue"]
+
+kugeza idx from 0 to uburebure(colors) {
+    vuga idx, ":", colors[idx]
+}
+
+vuga ""
+
+# Nested loops
+vuga "--- Nested Loops ---"
+kugeza row from 1 to 4 {
+    shyiramo line = ""
+    kugeza col from 1 to 4 {
+        line = line + "* "
+    }
+    vuga line
+}
+
+vuga ""
+
+# Break and continue example
+vuga "--- Break Example ---"
+kugeza n from 0 to 10 {
+    niba n == 5 {
+        vuga "Breaking at", n
+        kubera
+    }
+    vuga "Number:", n
+}
+
+vuga ""
+vuga "Loop demo complete!"

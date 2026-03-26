@@ -1,0 +1,6 @@
+# Hello World - Your first KashaLang program!
+# Run with: kasha run hello.kasha
+
+vuga "Muraho, Afurika!"
+vuga "Hello, World!"
+vuga "Welcome to KashaLang 🌍"

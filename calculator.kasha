@@ -1,0 +1,57 @@
+# Simple Calculator
+# Demonstrates basic arithmetic operations
+
+vuga "=== KashaLang Calculator ==="
+vuga ""
+
+# Calculator functions
+fata add(a, b) {
+    subiza a + b
+}
+
+fata subtract(a, b) {
+    subiza a - b
+}
+
+fata multiply(a, b) {
+    subiza a * b
+}
+
+fata divide(a, b) {
+    niba b == 0 {
+        vuga "Error: Cannot divide by zero!"
+        subiza 0
+    }
+    subiza a / b
+}
+
+fata power(a, b) {
+    subiza a ** b
+}
+
+fata modulo(a, b) {
+    subiza a % b
+}
+
+# Test the calculator
+shyiramo x = 10
+shyiramo y = 3
+
+vuga "Numbers:", x, "and", y
+vuga ""
+
+vuga "Addition:", add(x, y)
+vuga "Subtraction:", subtract(x, y)
+vuga "Multiplication:", multiply(x, y)
+vuga "Division:", divide(x, y)
+vuga "Power:", power(x, y)
+vuga "Modulo:", modulo(x, y)
+
+vuga ""
+
+# More complex calculation
+shyiramo result = add(multiply(2, 3), divide(10, 2))
+vuga "2 * 3 + 10 / 2 =", result
+
+vuga ""
+vuga "Calculator demo complete!"

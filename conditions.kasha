@@ -1,0 +1,56 @@
+# Conditions in KashaLang
+# Demonstrates if/else statements
+
+vuga "=== Conditions Demo ==="
+vuga ""
+
+# Simple if-else statement
+shyiramo score = 85
+
+vuga "Score:", score
+
+niba score >= 60 {
+    vuga "Grade: Pass"
+} nanone {
+    vuga "Grade: Fail"
+}
+
+vuga ""
+
+# Boolean operations
+shyiramo isSunny = ukuri
+shyiramo isWarm = ukuri
+
+vuga "Is sunny:", isSunny
+vuga "Is warm:", isWarm
+
+niba isSunny kandi isWarm {
+    vuga "Perfect weather for a picnic!"
+} nanone {
+    vuga "Not bad weather!"
+}
+
+vuga ""
+
+# Negation
+shyiramo isRaining = ibinya
+
+niba siyo isRaining {
+    vuga "No need for an umbrella!"
+} nanone {
+    vuga "Take an umbrella!"
+}
+
+vuga ""
+
+# Comparison operators
+shyiramo a = 10
+shyiramo b = 20
+
+vuga "a =", a, ", b =", b
+vuga "a == b:", a == b
+vuga "a != b:", a != b
+vuga "a < b:", a < b
+vuga "a > b:", a > b
+vuga "a <= b:", a <= b
+vuga "a >= b:", a >= b

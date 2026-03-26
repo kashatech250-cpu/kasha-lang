@@ -1,0 +1,97 @@
+# Functions in KashaLang
+# Demonstrates function definition and usage
+
+vuga "=== Functions Demo ==="
+vuga ""
+
+# Simple function
+fata greet(name) {
+    subiza "Muraho, " + name + "!"
+}
+
+# Call the function
+shyiramo ubutumwa = greet("Afurika")
+vuga ubutumwa
+
+vuga ""
+
+# Function with multiple parameters
+fata add(a, b) {
+    subiza a + b
+}
+
+shyiramo result = add(5, 3)
+vuga "5 + 3 =", result
+
+vuga ""
+
+# Function with default parameter
+fata power(base, exponent = 2) {
+    subiza base ** exponent
+}
+
+vuga "power(3) =", power(3)
+vuga "power(2, 3) =", power(2, 3)
+
+vuga ""
+
+# Recursive function - factorial
+fata factorial(n) {
+    niba n <= 1 {
+        subiza 1
+    }
+    subiza n * factorial(n - 1)
+}
+
+vuga "5! =", factorial(5)
+vuga "7! =", factorial(7)
+
+vuga ""
+
+# Function returning multiple values (as list)
+fata minMax(lst) {
+    shyiramo min = lst[0]
+    shyiramo max = lst[0]
+    
+    subiramo num in lst {
+        niba num < min {
+            min = num
+        }
+        niba num > max {
+            max = num
+        }
+    }
+    
+    subiza [min, max]
+}
+
+shyiramo numbers = [3, 1, 4, 1, 5, 9, 2, 6]
+shyiramo bounds = minMax(numbers)
+vuga "Numbers:", numbers
+vuga "Min:", bounds[0]
+vuga "Max:", bounds[1]
+
+vuga ""
+
+# Another simple function
+fata double(x) {
+    subiza x * 2
+}
+
+vuga "double(5) =", double(5)
+
+vuga ""
+
+# Function with early return
+fata isEven(n) {
+    niba n % 2 == 0 {
+        subiza ukuri
+    }
+    subiza ibinya
+}
+
+vuga "isEven(4):", isEven(4)
+vuga "isEven(7):", isEven(7)
+
+vuga ""
+vuga "Functions demo complete!"

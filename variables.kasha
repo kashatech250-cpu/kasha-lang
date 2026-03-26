@@ -1,0 +1,32 @@
+# Variables in KashaLang
+# Demonstrates variable declaration and usage
+
+# Declare variables with 'shyiramo' (Kinyarwanda) or 'let' (English)
+shyiramo izina = "Kasha"
+shyiramo imyaka = 5
+shyiramo ibiro = 3.14
+shyiramo niUkuri = ukuri
+
+# Print variables
+vuga "Name:", izina
+vuga "Age:", imyaka
+vuga "Pi:", ibiro
+vuga "Is true:", niUkuri
+
+# Variable reassignment
+izina = "KashaLang"
+imyaka = imyaka + 1
+
+vuga ""
+vuga "Updated name:", izina
+vuga "Updated age:", imyaka
+
+# Multiple variables
+shyiramo x = 10
+shyiramo y = 20
+shyiramo z = x + y
+
+vuga ""
+vuga "x =", x
+vuga "y =", y
+vuga "x + y =", z

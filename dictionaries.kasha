@@ -1,0 +1,75 @@
+# Dictionaries in KashaLang
+# Demonstrates dictionary (object) operations
+
+vuga "=== Dictionaries Demo ==="
+vuga ""
+
+# Creating dictionaries
+shyiramo emptyDict = {}
+shyiramo person = {"name": "Kasha", "age": 5, "country": "Rwanda"}
+
+vuga "Empty dict:", emptyDict
+vuga "Person:", person
+
+vuga ""
+
+# Accessing values
+vuga "Name:", person["name"]
+vuga "Age:", person["age"]
+vuga "Country:", person["country"]
+
+vuga ""
+
+# Modifying values
+shyiramo person2 = {"name": "Kasha", "age": 6, "country": "Rwanda", "language": "Kinyarwanda"}
+
+vuga "Modified person:", person2
+
+vuga ""
+
+# Nested dictionaries (single line)
+shyiramo grades = {"math": 95, "science": 88, "history": 92}
+shyiramo contact = {"email": "amina@school.com", "phone": "+250123456789"}
+shyiramo student = {"name": "Amina", "grades": grades, "contact": contact}
+
+vuga "Student:", student
+vuga "Math grade:", student["grades"]["math"]
+
+vuga ""
+
+# Dictionary operations
+shyiramo config = {"debug": ukuri, "version": "1.0.0", "port": 3000}
+
+# Check if key exists
+niba config["debug"] {
+    vuga "Debug mode is ON"
+}
+
+vuga "Version:", config["version"]
+vuga "Port:", config["port"]
+
+vuga ""
+
+# List of dictionaries (single line)
+shyiramo user1 = {"name": "Alice", "role": "admin"}
+shyiramo user2 = {"name": "Bob", "role": "user"}
+shyiramo user3 = {"name": "Carol", "role": "user"}
+shyiramo users = [user1, user2, user3]
+
+vuga "Users:"
+subiramo user in users {
+    vuga "  -", user["name"], "(", user["role"], ")"
+}
+
+vuga ""
+
+# Simple configuration example
+shyiramo features = ["auth", "dashboard", "settings"]
+shyiramo appConfig = {"name": "KashaApp", "theme": "dark", "language": "rw", "features": features}
+
+vuga "App Name:", appConfig["name"]
+vuga "Theme:", appConfig["theme"]
+vuga "Features:", appConfig["features"]
+
+vuga ""
+vuga "Dictionaries demo complete!"
