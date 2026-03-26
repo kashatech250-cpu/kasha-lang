@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+"""
+KashaLang - Main entry point
+The African-inspired programming language
+
+Usage:
+    kasha run <file>        Run a KashaLang program
+    kasha init <name>        Create a new project
+    kasha install [pkg]      Install packages
+    kasha repl               Start interactive shell
+    kasha export <fmt> <file> Export to other formats
+    kasha version            Show version info
+
+For more help: kasha --help
+"""
+
+import sys
+import os
+
+# Add the current directory to Python path for imports
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+try:
+    from cli import main
+except ImportError as e:
+    print(f"Error importing KashaLang modules: {e}")
+    print("Make sure you're running from the kashalang directory")
+    sys.exit(1)
+
+if __name__ == '__main__':
+    main()
