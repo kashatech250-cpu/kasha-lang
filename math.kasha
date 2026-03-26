@@ -1,0 +1,190 @@
+# KashaMath - Mathematical Functions Library
+# Part of KashaLang Standard Library
+
+# Constants
+shyiramo PI = 3.14159265359
+shyiramo E = 2.71828182846
+shyiramo TAU = 6.28318530718
+shyiramo GOLDEN_RATIO = 1.61803398875
+
+# Absolute value
+fata abs(x)
+    niba x < 0
+        subiza -x
+    subiza x
+
+# Power function
+fata pow(base, exponent)
+    subiza base ** exponent
+
+# Square root
+fata sqrt(x)
+    subiza x ** 0.5
+
+# Cube root
+fata cbrt(x)
+    subiza x ** (1/3)
+
+# Factorial
+fata factorial(n)
+    niba n <= 1
+        subiza 1
+    subiza n * factorial(n - 1)
+
+# Greatest Common Divisor
+fata gcd(a, b)
+    niba b == 0
+        subiza a
+    subiza gcd(b, a % b)
+
+# Least Common Multiple
+fata lcm(a, b)
+    subiza (a * b) / gcd(a, b)
+
+# Check if prime
+fata isPrime(n)
+    niba n <= 1
+        subiza ibinya
+    niba n <= 3
+        subiza ukuri
+    niba n % 2 == 0 cyangwa n % 3 == 0
+        subiza ibinya
+    
+    shyiramo i = 5
+    igihe i * i <= n
+        niba n % i == 0 cyangwa n % (i + 2) == 0
+            subiza ibinya
+        i = i + 6
+    
+    subiza ukuri
+
+# Generate primes up to n
+fata primesUpTo(n)
+    shyiramo primes = []
+    shyiramo num = 2
+    
+    igihe num <= n
+        niba isPrime(num)
+            primes = primes + [num]
+        num = num + 1
+    
+    subiza primes
+
+# Fibonacci number
+fata fibonacci(n)
+    niba n <= 0
+        subiza 0
+    niba n == 1
+        subiza 1
+    subiza fibonacci(n - 1) + fibonacci(n - 2)
+
+# Fibonacci sequence up to n
+fata fibonacciSequence(n)
+    shyiramo seq = []
+    shyiramo i = 0
+    
+    igihe i < n
+        seq = seq + [fibonacci(i)]
+        i = i + 1
+    
+    subiza seq
+
+# Convert degrees to radians
+fata toRadians(degrees)
+    subiza degrees * (PI / 180)
+
+# Convert radians to degrees
+fata toDegrees(radians)
+    subiza radians * (180 / PI)
+
+# Clamp value between min and max
+fata clamp(value, minVal, maxVal)
+    niba value < minVal
+        subiza minVal
+    niba value > maxVal
+        subiza maxVal
+    subiza value
+
+# Linear interpolation
+fata lerp(a, b, t)
+    subiza a + (b - a) * t
+
+# Map value from one range to another
+fata map(value, inMin, inMax, outMin, outMax)
+    subiza outMin + (value - inMin) * (outMax - outMin) / (inMax - inMin)
+
+# Sum of array
+fata sum(arr)
+    shyiramo total = 0
+    subiramo x in arr
+        total = total + x
+    subiza total
+
+# Average of array
+fata average(arr)
+    niba uburebure(arr) == 0
+        subiza 0
+    subiza sum(arr) / uburebure(arr)
+
+# Minimum value in array
+fata min(arr)
+    shyiramo m = arr[0]
+    subiramo x in arr
+        niba x < m
+            m = x
+    subiza m
+
+# Maximum value in array
+fata max(arr)
+    shyiramo m = arr[0]
+    subiramo x in arr
+        niba x > m
+            m = x
+    subiza m
+
+# Round to nearest integer
+fata round(x)
+    niba x - floor(x) < 0.5
+        subiza floor(x)
+    subiza ceil(x)
+
+# Floor (round down)
+fata floor(x)
+    subiza x - (x % 1)
+
+# Ceiling (round up)
+fata ceil(x)
+    niba x % 1 == 0
+        subiza x
+    subiza x - (x % 1) + 1
+
+# Random number between 0 and 1
+fata random()
+    subiza 0.5  # Placeholder - would use system random
+
+# Random integer in range
+fata randomInt(min, max)
+    subiza floor(min + random() * (max - min + 1))
+
+# Random choice from array
+fata randomChoice(arr)
+    shyiramo index = randomInt(0, uburebure(arr) - 1)
+    subiza arr[index]
+
+# Shuffle array
+fata shuffle(arr)
+    shyiramo result = arr
+    shyiramo n = uburebure(arr)
+    shyiramo i = n - 1
+    
+    igihe i > 0
+        shyiramo j = randomInt(0, i)
+        # Swap elements
+        shyiramo temp = result[i]
+        result[i] = result[j]
+        result[j] = temp
+        i = i - 1
+    
+    subiza result
+
+vuga "KashaMath library loaded!"

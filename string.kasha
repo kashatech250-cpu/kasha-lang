@@ -1,0 +1,222 @@
+# KashaString - String Manipulation Library
+# Part of KashaLang Standard Library
+
+# Get string length (alias for built-in)
+fata length(s)
+    subiza uburebure(s)
+
+# Convert to uppercase
+fata upper(s)
+    subiza hejuru_str(s)
+
+# Convert to lowercase
+fata lower(s)
+    subiza hasi_str(s)
+
+# Capitalize first letter
+fata capitalize(s)
+    niba uburebure(s) == 0
+        subiza ""
+    subiza hejuru_str(s[0]) + hasi_str(s[1:])
+
+# Title case (capitalize each word)
+fata title(s)
+    shyiramo words = gabanya(s, " ")
+    shyiramo result = []
+    
+    subiramo word in words
+        result = result + [capitalize(word)]
+    
+    subiza huza(result, " ")
+
+# Check if string starts with prefix
+fata startsWith(s, prefix)
+    shyiramo prefixLen = uburebure(prefix)
+    niba prefixLen > uburebure(s)
+        subiza ibinya
+    subiza s[0:prefixLen] == prefix
+
+# Check if string ends with suffix
+fata endsWith(s, suffix)
+    shyiramo suffixLen = uburebure(suffix)
+    shyiramo sLen = uburebure(s)
+    niba suffixLen > sLen
+        subiza ibinya
+    subiza s[sLen - suffixLen:sLen] == suffix
+
+# Check if string contains substring
+fata contains(s, substring)
+    subiza index(s, substring) >= 0
+
+# Find index of substring
+fata indexOf(s, substring)
+    shyiramo sLen = uburebure(s)
+    shyiramo subLen = uburebure(substring)
+    shyiramo i = 0
+    
+    igihe i <= sLen - subLen
+        niba s[i:i + subLen] == substring
+            subiza i
+        i = i + 1
+    
+    subiza -1
+
+# Count occurrences of substring
+fata count(s, substring)
+    shyiramo count = 0
+    shyiramo pos = 0
+    
+    igihe pos < uburebure(s)
+        shyiramo idx = indexOf(s[pos:uburebure(s)], substring)
+        niba idx == -1
+            kubera
+        count = count + 1
+        pos = pos + idx + uburebure(substring)
+    
+    subiza count
+
+# Trim whitespace from both ends
+fata trim(s)
+    subiza trimLeft(trimRight(s))
+
+# Trim whitespace from left
+fata trimLeft(s)
+    shyiramo i = 0
+    igihe i < uburebure(s) kandi s[i] == " "
+        i = i + 1
+    subiza s[i:uburebure(s)]
+
+# Trim whitespace from right
+fata trimRight(s)
+    shyiramo i = uburebure(s) - 1
+    igihe i >= 0 kandi s[i] == " "
+        i = i - 1
+    subiza s[0:i + 1]
+
+# Pad string on left
+fata padLeft(s, length, char = " ")
+    shyiramo sLen = uburebure(s)
+    niba sLen >= length
+        subiza s
+    
+    shyiramo padding = ""
+    shyiramo i = 0
+    igihe i < length - sLen
+        padding = padding + char
+        i = i + 1
+    
+    subiza padding + s
+
+# Pad string on right
+fata padRight(s, length, char = " ")
+    shyiramo sLen = uburebure(s)
+    niba sLen >= length
+        subiza s
+    
+    shyiramo padding = ""
+    shyiramo i = 0
+    igihe i < length - sLen
+        padding = padding + char
+        i = i + 1
+    
+    subiza s + padding
+
+# Center string
+fata center(s, width, char = " ")
+    shyiramo sLen = uburebure(s)
+    niba sLen >= width
+        subiza s
+    
+    shyiramo totalPad = width - sLen
+    shyiramo leftPad = totalPad / 2
+    shyiramo rightPad = totalPad - leftPad
+    
+    subiza padLeft(s, sLen + leftPad, char) + padRight("", rightPad, char)
+
+# Reverse string
+fata reverse(s)
+    shyiramo result = ""
+    shyiramo i = uburebure(s) - 1
+    
+    igihe i >= 0
+        result = result + s[i]
+        i = i - 1
+    
+    subiza result
+
+# Check if string is palindrome
+fata isPalindrome(s)
+    subiza s == reverse(s)
+
+# Repeat string n times
+fata repeat(s, n)
+    shyiramo result = ""
+    shyiramo i = 0
+    
+    igihe i < n
+        result = result + s
+        i = i + 1
+    
+    subiza result
+
+# Format string with placeholders
+fata format(template, values)
+    shyiramo result = template
+    subiramo key in values
+        shyiramo placeholder = "{{" + key + "}}"
+        result = gusimbuza(result, placeholder, values[key])
+    subiza result
+
+# Extract digits from string
+fata extractDigits(s)
+    shyiramo result = ""
+    subiramo c in s
+        niba c >= "0" kandi c <= "9"
+            result = result + c
+    subiza result
+
+# Check if string is numeric
+fata isNumeric(s)
+    niba uburebure(s) == 0
+        subiza ibinya
+    subiramo c in s
+        niba c < "0" cyangwa c > "9"
+            subiza ibinya
+    subiza ukuri
+
+# Check if string is alphabetic
+fata isAlpha(s)
+    niba uburebure(s) == 0
+        subiza ibinya
+    subiramo c in s
+        niba (c < "a" cyangwa c > "z") kandi (c < "A" cyangwa c > "Z")
+            subiza ibinya
+    subiza ukuri
+
+# Check if string is alphanumeric
+fata isAlphaNumeric(s)
+    niba uburebure(s) == 0
+        subiza ibinya
+    subiramo c in s
+        niba (c < "a" cyangwa c > "z") kandi (c < "A" cyangwa c > "Z") kandi (c < "0" cyangwa c > "9")
+            subiza ibinya
+    subiza ukuri
+
+# URL encode (simple)
+fata urlEncode(s)
+    # Replace spaces with +
+    subiza gusimbuza(s, " ", "+")
+
+# URL decode (simple)
+fata urlDecode(s)
+    subiza gusimbuza(s, "+", " ")
+
+# Base64 encode (placeholder)
+fata base64Encode(s)
+    subiza s  # Placeholder
+
+# Base64 decode (placeholder)
+fata base64Decode(s)
+    subiza s  # Placeholder
+
+vuga "KashaString library loaded!"

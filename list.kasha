@@ -1,0 +1,300 @@
+# KashaList - List/Array Manipulation Library
+# Part of KashaLang Standard Library
+
+# Get list length (alias for built-in)
+fata length(lst)
+    subiza uburebure(lst)
+
+# Check if list is empty
+fata isEmpty(lst)
+    subiza uburebure(lst) == 0
+
+# Get first element
+fata first(lst)
+    niba isEmpty(lst)
+        subiza taruza
+    subiza lst[0]
+
+# Get last element
+fata last(lst)
+    niba isEmpty(lst)
+        subiza taruza
+    subiza lst[uburebure(lst) - 1]
+
+# Get element at index (with bounds checking)
+fata get(lst, index)
+    niba index < 0 cyangwa index >= uburebure(lst)
+        subiza taruza
+    subiza lst[index]
+
+# Set element at index
+fata set(lst, index, value)
+    lst[index] = value
+    subiza lst
+
+# Add element to beginning
+fata prepend(lst, value)
+    subiza [value] + lst
+
+# Add element to end (alias for ongera)
+fata append(lst, value)
+    ongera(lst, value)
+    subiza lst
+
+# Insert element at index
+fata insertAt(lst, index, value)
+    shiramo(lst, index, value)
+    subiza lst
+
+# Remove element at index
+fata removeAt(lst, index)
+    shyiramo result = []
+    shyiramo i = 0
+    
+    subiramo item in lst
+        niba i != index
+            result = result + [item]
+        i = i + 1
+    
+    subiza result
+
+# Remove first occurrence of value
+fata removeValue(lst, value)
+    kuramo(lst, value)
+    subiza lst
+
+# Find index of value
+fata findIndex(lst, value)
+    shyiramo i = 0
+    subiramo item in lst
+        niba item == value
+            subiza i
+        i = i + 1
+    subiza -1
+
+# Check if list contains value
+fata contains(lst, value)
+    subiza findIndex(lst, value) >= 0
+
+# Count occurrences of value
+fata count(lst, value)
+    shyiramo c = 0
+    subiramo item in lst
+        niba item == value
+            c = c + 1
+    subiza c
+
+# Reverse list (alias for birahura)
+fata reverse(lst)
+    birahura(lst)
+    subiza lst
+
+# Create a copy of list
+fata copy(lst)
+    shyiramo result = []
+    subiramo item in lst
+        result = result + [item]
+    subiza result
+
+# Slice list (extract sublist)
+fata slice(lst, start, end = taruza)
+    niba end == taruza
+        end = uburebure(lst)
+    
+    shyiramo result = []
+    shyiramo i = start
+    
+    igihe i < end kandi i < uburebure(lst)
+        result = result + [lst[i]]
+        i = i + 1
+    
+    subiza result
+
+# Flatten nested list
+fata flatten(lst)
+    shyiramo result = []
+    
+    subiramo item in lst
+        niba ubwoko(item) == "urutonde"
+            subiramo subitem in item
+                result = result + [subitem]
+        nanone
+            result = result + [item]
+    
+    subiza result
+
+# Map function over list
+fata map(lst, fn)
+    shyiramo result = []
+    subiramo item in lst
+        result = result + [fn(item)]
+    subiza result
+
+# Filter list by predicate
+fata filter(lst, fn)
+    shyiramo result = []
+    subiramo item in lst
+        niba fn(item)
+            result = result + [item]
+    subiza result
+
+# Reduce list to single value
+fata reduce(lst, fn, initial)
+    shyiramo acc = initial
+    subiramo item in lst
+        acc = fn(acc, item)
+    subiza acc
+
+# Sum of list
+fata sum(lst)
+    subiza reduce(lst, fata(a, b) subiza a + b, 0)
+
+# Product of list
+fata product(lst)
+    subiza reduce(lst, fata(a, b) subiza a * b, 1)
+
+# Average of list
+fata average(lst)
+    niba isEmpty(lst)
+        subiza 0
+    subiza sum(lst) / uburebure(lst)
+
+# Minimum value
+fata min(lst)
+    niba isEmpty(lst)
+        subiza taruza
+    
+    shyiramo m = lst[0]
+    subiramo item in lst
+        niba item < m
+            m = item
+    subiza m
+
+# Maximum value
+fata max(lst)
+    niba isEmpty(lst)
+        subiza taruza
+    
+    shyiramo m = lst[0]
+    subiramo item in lst
+        niba item > m
+            m = item
+    subiza m
+
+# Unique values only
+fata unique(lst)
+    shyiramo result = []
+    subiramo item in lst
+        niba !contains(result, item)
+            result = result + [item]
+    subiza result
+
+# Sort list (alias for urutonde)
+fata sort(lst)
+    urutonde(lst)
+    subiza lst
+
+# Sort in descending order
+fata sortDesc(lst)
+    urutonde(lst)
+    birahura(lst)
+    subiza lst
+
+# Zip two lists together
+fata zip(lst1, lst2)
+    shyiramo result = []
+    shyiramo len1 = uburebure(lst1)
+    shyiramo len2 = uburebure(lst2)
+    shyiramo minLen = len1
+    niba len2 < minLen
+        minLen = len2
+    
+    shyiramo i = 0
+    igihe i < minLen
+        result = result + [[lst1[i], lst2[i]]]
+        i = i + 1
+    
+    subiza result
+
+# Chunk list into smaller lists
+fata chunk(lst, size)
+    shyiramo result = []
+    shyiramo i = 0
+    
+    igihe i < uburebure(lst)
+        result = result + [slice(lst, i, i + size)]
+        i = i + size
+    
+    subiza result
+
+# Take first n elements
+fata take(lst, n)
+    subiza slice(lst, 0, n)
+
+# Drop first n elements
+fata drop(lst, n)
+    subiza slice(lst, n, uburebure(lst))
+
+# Take while condition is true
+fata takeWhile(lst, fn)
+    shyiramo result = []
+    subiramo item in lst
+        niba fn(item)
+            result = result + [item]
+        nanone
+            kubera
+    subiza result
+
+# Drop while condition is true
+fata dropWhile(lst, fn)
+    shyiramo dropping = ukuri
+    shyiramo result = []
+    
+    subiramo item in lst
+        niba dropping kandi fn(item)
+            komeza
+        dropping = ibinya
+        result = result + [item]
+    
+    subiza result
+
+# Check if all elements satisfy predicate
+fata all(lst, fn)
+    subiramo item in lst
+        niba !fn(item)
+            subiza ibinya
+    subiza ukuri
+
+# Check if any element satisfies predicate
+fata any(lst, fn)
+    subiramo item in lst
+        niba fn(item)
+            subiza ukuri
+    subiza ibinya
+
+# Group elements by key function
+fata groupBy(lst, fn)
+    shyiramo result = {}
+    
+    subiramo item in lst
+        shyiramo key = fn(item)
+        niba result[key] == taruza
+            result[key] = []
+        result[key] = result[key] + [item]
+    
+    subiza result
+
+# Partition list into two based on predicate
+fata partition(lst, fn)
+    shyiramo trueList = []
+    shyiramo falseList = []
+    
+    subiramo item in lst
+        niba fn(item)
+            trueList = trueList + [item]
+        nanone
+            falseList = falseList + [item]
+    
+    subiza [trueList, falseList]
+
+vuga "KashaList library loaded!"
